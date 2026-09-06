@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liu Qianhao | Ph.D. Candidate in Roman History</title>
-    <!-- Google Fonts: Cinzel (Monumental Roman Inscriptions) & EB Garamond (Scholarly Humanist Serif) -->
+    <!-- Google Fonts: Cinzel & EB Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <style>
+        /* =======================================================
+           【背景图片文件名配置区】
+           根据您仓库里的实际文件名映射。如需对调照片，改这里的名字即可：
+        ======================================================= */
         :root {
-            --roman-bg: #FCFBF8;
-            --roman-bg-alt: #F6F2EA;
-            --roman-card-bg: #FFFFFF;
+            --bg-hero: url('IMG_8624.jpeg');        /* 首屏大背景：君士坦丁凯旋门晚霞 */
+            --bg-inscription: url('IMG_8222.jpeg'); /* 题铭通栏：塞维鲁凯旋门铭文 */
+            --bg-temple: url('IMG_8225.jpeg');      /* 神庙通栏：安东尼与福斯蒂娜神庙 */
+            --bg-triumph: url('IMG_8594.jpeg');     /* 凯旋通栏：提图斯凯旋门全景 */
+            --bg-palatine: url('IMG_8280.jpeg');    /* 页尾背景：帕拉蒂诺山拱券遗迹 */
+
+            /* 古典配色体系 */
+            --roman-bg: #FAF8F5;
+            --roman-bg-card: rgba(255, 255, 255, 0.94);
             --roman-crimson: #6E1A24;
             --roman-crimson-light: #8E2B38;
             --roman-gold: #B88A44;
             --roman-gold-soft: #D4AF37;
-            --roman-dark: #201C19;
+            --roman-dark: #221E1B;
             --roman-muted: #5C554E;
-            --roman-border: #E2DBD0;
-            --roman-border-dark: #C4B9A7;
-            --max-width: 1040px;
+            --roman-border: #E5DFD3;
+            --roman-border-dark: #C6BBA8;
+            --max-width: 980px;
         }
 
         * {
@@ -51,12 +61,13 @@
             border-bottom-color: var(--roman-crimson-light);
         }
 
-        /* Classical Header & Hero */
+        /* Hero Header with Background */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(28, 23, 20, 0.72), rgba(28, 23, 20, 0.88)), url('image_3.png') center/cover no-repeat;
+            background: linear-gradient(rgba(20, 16, 14, 0.72), rgba(20, 16, 14, 0.88)), var(--bg-hero) center/cover no-repeat;
+            background-color: #221D1A;
             color: #F7F5F0;
-            padding: 5rem 1.5rem 4rem;
+            padding: 6rem 1.5rem 5rem;
             text-align: center;
             border-bottom: 3px solid var(--roman-gold);
         }
@@ -77,7 +88,7 @@
 
         .hero-name {
             font-family: 'Cinzel', serif;
-            font-size: 2.75rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: 0.08em;
             margin-bottom: 0.25rem;
@@ -95,7 +106,7 @@
         .hero-title {
             font-size: 1.2rem;
             font-weight: 400;
-            max-width: 780px;
+            max-width: 800px;
             margin: 0 auto 1.5rem;
             color: #ECE5D8;
         }
@@ -121,14 +132,14 @@
             border-bottom: 1px dotted #A89C86;
         }
 
-        /* Navigation Bar */
+        /* Classical Navigation Bar */
         .nav-bar {
-            background-color: var(--roman-card-bg);
+            background-color: #FFFFFF;
             border-bottom: 1px solid var(--roman-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .nav-inner {
@@ -137,8 +148,8 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            padding: 0.6rem 1rem;
-            gap: 1.25rem;
+            padding: 0.65rem 1rem;
+            gap: 1.5rem;
         }
 
         .nav-inner a {
@@ -157,14 +168,79 @@
             border-bottom-color: var(--roman-crimson);
         }
 
-        /* Layout Container */
-        .container {
-            max-width: var(--max-width);
-            margin: 2.5rem auto;
+        /* Parallax Background Breaks */
+        .monument-break {
+            height: 260px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #24201D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-top: 1px solid var(--roman-gold);
+            border-bottom: 1px solid var(--roman-gold);
+            margin: 3.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .monument-break {
+                background-attachment: fixed;
+            }
+        }
+
+        .monument-break::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(18, 14, 12, 0.62), rgba(18, 14, 12, 0.75));
+        }
+
+        .break-inscription {
+            background-image: var(--bg-inscription);
+        }
+
+        .break-temple {
+            background-image: var(--bg-temple);
+        }
+
+        .break-triumph {
+            background-image: var(--bg-triumph);
+        }
+
+        .break-text-box {
+            position: relative;
+            z-index: 2;
+            text-align: center;
             padding: 0 1.5rem;
         }
 
-        /* Classical Section Styling */
+        .break-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.25em;
+            color: #F8F5EE;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 0.35rem;
+        }
+
+        .break-subtitle {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: var(--roman-gold-soft);
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Container & Cards */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
         section {
             margin-bottom: 3.5rem;
             scroll-margin-top: 4.5rem;
@@ -204,20 +280,20 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 65px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--roman-gold), transparent);
         }
 
-        /* Card System */
         .card {
-            background-color: var(--roman-card-bg);
+            background-color: var(--roman-bg-card);
             border: 1px solid var(--roman-border);
             border-radius: 2px;
             padding: 1.75rem 2rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
             position: relative;
+            backdrop-filter: blur(4px);
         }
 
         .card::before {
@@ -235,7 +311,7 @@
             background-color: var(--roman-crimson);
         }
 
-        /* About / Intro Section */
+        /* Profile & Research Boxes */
         .about-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -249,7 +325,7 @@
         }
 
         .research-interests-box {
-            background-color: var(--roman-bg-alt);
+            background: linear-gradient(135deg, rgba(244, 239, 230, 0.9), rgba(250, 248, 245, 0.95));
             border: 1px solid var(--roman-border);
             padding: 1.5rem;
             border-radius: 2px;
@@ -282,7 +358,7 @@
             font-style: italic;
         }
 
-        /* Publications & Papers */
+        /* Entries */
         .entry-title {
             font-size: 1.2rem;
             font-weight: 600;
@@ -316,7 +392,7 @@
             margin-left: 0.5rem;
         }
 
-        /* Academic Timeline / Experience */
+        /* Timeline */
         .timeline-item {
             margin-bottom: 1.5rem;
             padding-left: 1.25rem;
@@ -362,77 +438,17 @@
             margin-bottom: 0.4rem;
         }
 
-        /* Photo Gallery & Fieldwork */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-card {
-            background-color: var(--roman-card-bg);
-            border: 1px solid var(--roman-border);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-
-        .gallery-img-wrap {
-            position: relative;
-            overflow: hidden;
-            background-color: #E5DFD5;
-            aspect-ratio: 4 / 3;
-        }
-
-        .gallery-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-card:hover .gallery-img-wrap img {
-            transform: scale(1.03);
-        }
-
-        .gallery-caption {
-            padding: 1.1rem 1.25rem;
-            font-size: 0.95rem;
-            line-height: 1.55;
-            background-color: #FFFFFF;
-            border-top: 1px solid var(--roman-border);
-            flex-grow: 1;
-        }
-
-        .gallery-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--roman-crimson);
-            margin-bottom: 0.3rem;
-        }
-
-        .gallery-latin {
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            color: var(--roman-gold);
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        /* Languages & Skills Grid */
+        /* Languages */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 1.25rem;
         }
 
         .skill-box {
-            background-color: var(--roman-card-bg);
+            background-color: var(--roman-bg-card);
             border: 1px solid var(--roman-border);
-            padding: 1.25rem;
+            padding: 1.25rem 1rem;
             text-align: center;
         }
 
@@ -441,20 +457,22 @@
             font-size: 1rem;
             font-weight: 700;
             color: var(--roman-crimson);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         .skill-detail {
             font-style: italic;
             color: var(--roman-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
-        /* Classical Footer */
+        /* Footer with Background */
         footer {
-            background-color: #1A1715;
+            position: relative;
+            background: linear-gradient(rgba(18, 14, 12, 0.88), rgba(18, 14, 12, 0.94)), var(--bg-palatine) center/cover no-repeat;
+            background-color: #1A1614;
             color: #C8BFB2;
-            padding: 3rem 1.5rem 2.5rem;
+            padding: 4rem 1.5rem 3rem;
             text-align: center;
             border-top: 3px solid var(--roman-gold);
             font-size: 0.95rem;
@@ -463,15 +481,15 @@
         .footer-epigraph {
             font-family: 'Cinzel', serif;
             font-size: 0.85rem;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             color: var(--roman-gold-soft);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
         }
 
         .footer-text {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
+            max-width: 640px;
+            margin: 0 auto;
             color: #A39989;
         }
 
@@ -490,7 +508,7 @@
 </head>
 <body>
 
-    <!-- Header / Hero Section -->
+    <!-- Header / Hero Section (Background: IMG_8624.jpeg) -->
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-motto">Vota Publica · Legitima Imperii · Historia Antiqua</div>
@@ -501,9 +519,9 @@
                 Visiting Research Student · School of History, Classics and Archaeology, University of Edinburgh
             </p>
             <div class="hero-affiliations">
-                <span><strong>Affiliation:</strong> Fudan University (复旦大学)</span>
+                <span><strong>Affiliation:</strong> Fudan University</span>
                 <span><strong>Visiting:</strong> University of Edinburgh</span>
-                <span><strong>Specialization:</strong> Roman Principate & Imperial Cult</span>
+                <span><strong>Field:</strong> Roman Principate & Imperial Cult</span>
             </div>
             <div class="hero-contact">
                 <span>Email: <a href="mailto:wkslqh@gmail.com">wkslqh@gmail.com</a></span>
@@ -519,17 +537,14 @@
             <a href="#about">About</a>
             <a href="#research">Research & Theses</a>
             <a href="#publications">Publications</a>
-            <a href="#fieldwork">Fieldwork & Epigraphy</a>
             <a href="#conferences">Conferences</a>
             <a href="#education">Education & Training</a>
             <a href="#languages">Languages</a>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <main class="container">
-
-        <!-- I. About / Biography -->
+    <!-- Section 1: Academic Profile -->
+    <main class="container" style="margin-top: 3rem;">
         <section id="about">
             <div class="section-header">
                 <span class="section-numeral">Part I</span>
@@ -538,17 +553,17 @@
             <div class="about-grid">
                 <div class="about-text">
                     <p>
-                        I am a doctoral researcher in Ancient Roman History at <strong>Fudan University</strong>, currently conducting research as an academic visiting student at the <strong>University of Edinburgh</strong> (School of History, Classics and Archaeology). My doctoral research investigates the mechanisms of imperial legitimacy, political rituals, and monarchical ideology during the Roman Principate.
+                        I am a doctoral student in Ancient Roman History at <strong>Fudan University</strong>, currently conducting visiting research at the <strong>University of Edinburgh</strong> (School of History, Classics and Archaeology). My research investigates the mechanisms of imperial legitimacy, political rituals, and monarchical political thought during the Roman Principate.
                     </p>
                     <p>
-                        My broader academic focus spans the historical evolution of <em>Vota Publica</em> (state religious vows), the imperial cult, political metaphors of the body politic, and ancient Greek and Roman ethnic identity construction—particularly the conceptual borders between Hellenes and "barbarians" (<em>Μειξοβάρβαρος</em>). My methodology bridges classical textual critique with non-literary sources, including Roman epigraphy, numismatics, and papyrology.
+                        My broader research program examines the historical evolution of <em>Vota Publica</em> (state religious vows), the imperial cult, metaphors of the body politic, and ancient Greek and Roman ethnic identities—particularly classical discourses of othering and the conceptual boundaries of the "semi-barbarian" (<em>Μειξοβάρβαρος</em>). My methodology integrates classical textual criticism with epigraphy, numismatics, and papyrology.
                     </p>
                 </div>
                 <div class="research-interests-box">
                     <div class="box-title">Research Interests</div>
                     <div class="interest-tags">
                         <span class="tag">Imperial Cult</span>
-                        <span class="tag">Monarchical Thought</span>
+                        <span class="tag">Monarchical Political Thought</span>
                         <span class="tag">Roman Emperors’ Legitimacy</span>
                         <span class="tag">Vota Publica Rituals</span>
                         <span class="tag">Greek & Roman Ethnicity</span>
@@ -559,36 +574,45 @@
                 </div>
             </div>
         </section>
+    </main>
 
-        <!-- II. Research Experience & Key Theses -->
+    <!-- Background Interlude 1: Arch of Septimius Severus Attic Inscription (IMG_8222.jpeg) -->
+    <div class="monument-break break-inscription">
+        <div class="break-text-box">
+            <div class="break-title">Senatvs Popvlvsqve Romanvs</div>
+            <div class="break-subtitle">Monumental Epigraphy & the Legitimization of Imperial Rule</div>
+        </div>
+    </div>
+
+    <!-- Section 2: Theses & Publications -->
+    <main class="container">
         <section id="research">
             <div class="section-header">
                 <span class="section-numeral">Part II</span>
-                <h2 class="section-title">Theses & Core Research</h2>
+                <h2 class="section-title">Research Theses</h2>
             </div>
 
             <div class="card">
                 <div class="entry-title">The Historical Evolution of Vota Publica Rituals in Ancient Rome</div>
                 <div class="entry-meta">MA Dissertation · University of Chinese Academy of Social Sciences · Supervised by Prof. Yujuan Hu</div>
                 <div class="entry-desc">
-                    This dissertation examines the historical evolution of <em>Vota Publica</em> rituals across the monarchy, republic, and imperial periods. Under the Principate, <em>Vota Publica</em> transitioned from reciprocal state vows for collective welfare into a paramount ceremonial instrument for imperial legitimacy. By linking the emperor's health and safety directly to the preservation of the <em>res publica</em>, Roman emperors reconciled the tension between monarchical reality and Republican facade, utilizing imperial vows and coin titulature (marking quinquennial and decennial vows) as a quasi-coronation ceremony.
+                    Investigates the transformation of <em>Vota Publica</em> across the monarchy, republic, and imperial periods. Under the Principate, <em>Vota Publica</em> evolved from traditional reciprocal state vows into an essential ritual instrument supporting imperial legitimacy. Linking the emperor's health directly to state security, the Principate reconciled monarchical dominance with republican memory, using decennial and vicennial vow inscriptions on coinage as civic markers akin to republican terms of office.
                 </div>
             </div>
 
             <div class="card">
-                <div class="entry-title">Images of the Aetolian Ethnic Group and the Evolution of Hellenic Identity</div>
+                <div class="entry-title">Images of the Aetolian Ethnic Group and the Definition Standards of Hellenic Identity</div>
                 <div class="entry-meta">BA Thesis · Capital Normal University · Supervised by Prof. Shaoxiang Yan</div>
                 <div class="entry-desc">
-                    Analyzes the shifting representations of the Aetolians from early "Hellenes" in the Archaic epoch to 5th-century Athenian discourses designating them as "non-Hellenes" and later Hellenistic confrontations. Demonstrates that historical portrayals of peripheral Greek groups reflected changing Athenian and pan-Hellenic identity standards rather than an unchanging ethnic reality.
+                    Analyzes representations of the Aetolians from early "Hellenes" in the Archaic epoch to 5th-century Athenian texts designating them as "non-Hellenes", through to Hellenistic historical narratives. Demonstrates how classical literary representations of peripheral groups reflected changing criteria of pan-Hellenic identity rather than static ethnic realities.
                 </div>
             </div>
         </section>
 
-        <!-- III. Publications -->
         <section id="publications">
             <div class="section-header">
                 <span class="section-numeral">Part III</span>
-                <h2 class="section-title">Publications & Forthcoming Work</h2>
+                <h2 class="section-title">Publications & Forthcoming</h2>
             </div>
 
             <div class="card">
@@ -600,13 +624,13 @@
                     Original Title: 反思古希腊族群研究中的他者话语范式——以“半蛮族”为线索 · <em>Ancient Civilizations (古代文明)</em>, no. 4 (2025): 15–28.
                 </div>
                 <div class="entry-desc">
-                    Re-evaluates binary constructs of Self vs. Other in classical Athenian historiography through the conceptual intermediary category of <em>Μειξοβάρβαρος</em> (semi-barbarian).
+                    Re-evaluates classical Athenian self-identity construction through the analytical lens of <em>Μειξοβάρβαρος</em> (semi-barbarians), exploring how ancient authors demarcated the frontiers of Greekness.
                 </div>
             </div>
 
             <div class="card">
                 <div class="entry-title">
-                    [Forthcoming Article on Roman History]
+                    [Forthcoming Article on Ancient Roman History]
                     <span class="badge-cssci">CSSCI</span>
                 </div>
                 <div class="entry-meta">
@@ -622,101 +646,26 @@
                     <em>Fudan Journal of Western Classics (复旦西方古典学辑刊)</em> · Accepted / Forthcoming (2026).
                 </div>
                 <div class="entry-desc">
-                    Critical assessment of metaphorical constructs of organic corporate statehood, political pathology, and monarchical authority in late Republican and early Imperial Roman thought.
+                    Critical review of the metaphors of corporate body, political pathology, and monarchical authority in late Republican and early Imperial Roman political thought.
                 </div>
             </div>
         </section>
+    </main>
 
-        <!-- IV. Fieldwork & Epigraphic Gallery -->
-        <section id="fieldwork">
-            <div class="section-header">
-                <span class="section-numeral">Part IV</span>
-                <h2 class="section-title">Fieldwork, Monuments & Epigraphy</h2>
-            </div>
-            <p style="text-align: center; margin-bottom: 2rem; color: var(--roman-muted); font-style: italic;">
-                Visual records and monumental inscriptions from historical surveys across the Forum Romanum and Imperial Rome.
-            </p>
+    <!-- Background Interlude 2: Temple of Antoninus and Faustina (IMG_8225.jpeg) -->
+    <div class="monument-break break-temple">
+        <div class="break-text-box">
+            <div class="break-title">Divo Antonino et Divae Favstinae</div>
+            <div class="break-subtitle">Imperial Deification, Cult, and Sacred Architecture</div>
+        </div>
+    </div>
 
-            <div class="gallery-grid">
-                <!-- Arch of Septimius Severus Attica Inscription -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_9.png" alt="Attic Inscription of the Arch of Septimius Severus">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Arch of Septimius Severus (Attica Detail)</div>
-                        <span class="gallery-latin">CIL VI 1033 · IMP CAES LVCIO SEPTIMIO... PROPAGATVM</span>
-                        Monumental dedicatory inscription (AD 203) documenting Severan Parthian campaigns and dynastic legitimacy. Noteworthy for the erasure and re-carving of Geta's name following his <em>damnatio memoriae</em>.
-                    </div>
-                </div>
-
-                <!-- Arch of Constantine Sunset -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_3.png" alt="Arch of Constantine at sunset">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Arch of Constantine at Dusk</div>
-                        <span class="gallery-latin">ARCVS CONSTANTINI · AD 315</span>
-                        Triumphal arch dedicated to Constantine I celebrating the victory over Maxentius at the Battle of the Milvian Bridge, exemplifying late antique imperial ideology and the reuse of Trajanic, Hadrianic, and Aurelian spolia.
-                    </div>
-                </div>
-
-                <!-- Temple of Antoninus and Faustina -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_7.png" alt="Temple of Antoninus and Faustina">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Temple of Antoninus and Faustina</div>
-                        <span class="gallery-latin">DIVO ANTONINO ET DIVAE FAVSTINAE EX S C</span>
-                        Colossal cipollino marble colonnade in the Roman Forum, testifying to imperial deification (<em>consecratio</em>) and the religious architecture of the Antonine dynasty.
-                    </div>
-                </div>
-
-                <!-- House of the Vestals -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_8.png" alt="Statue of Vestal Virgin at Atrium Vestae">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Statue of a Vestal Virgin</div>
-                        <span class="gallery-latin">ATRIUM VESTAE · FORVM ROMANVM</span>
-                        Memorial statue of a <em>Virgo Vestalis Maxima</em> within the House of the Vestals, embodying traditional Roman civic religion, ritual purity, and the eternal continuity of Rome.
-                    </div>
-                </div>
-
-                <!-- Arch of Titus -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_6.png" alt="Arch of Titus">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Arch of Titus on the Velia</div>
-                        <span class="gallery-latin">SENATVS POPVLVSQVE ROMANVS DIVO TITO</span>
-                        Constructed by Domitian c. AD 81, depicting the deification of Titus riding an eagle and the triumphal procession following the Jewish War.
-                    </div>
-                </div>
-
-                <!-- Palatine Substructures -->
-                <div class="gallery-card">
-                    <div class="gallery-img-wrap">
-                        <img src="image_4.png" alt="Palatine Hill Monumental Substructures">
-                    </div>
-                    <div class="gallery-caption">
-                        <div class="gallery-title">Palatine Hill Substructures</div>
-                        <span class="gallery-latin">PALATIVM · IMPERIAL MONUMENTALITY</span>
-                        Massive brick-faced concrete arches supporting the imperial palaces overlooking the Forum Romanum, visual markers of the concentration of administrative authority during the Principate.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- V. Conference Presentations -->
+    <!-- Section 3: Conferences -->
+    <main class="container">
         <section id="conferences">
             <div class="section-header">
-                <span class="section-numeral">Part V</span>
-                <h2 class="section-title">Selected Presentations & Conferences</h2>
+                <span class="section-numeral">Part IV</span>
+                <h2 class="section-title">Conference Presentations</h2>
             </div>
 
             <div class="card">
@@ -751,15 +700,25 @@
 
             <div class="card">
                 <div class="entry-title">"Hellenes or Semi-Barbarian: On the Identity and Image of the Aetolians in the Horizon of Cultural Memory"</div>
-                <div class="entry-meta">The 17th Winter Conference in World History · Beijing Normal University · Nov 2021 (Awarded First Prize)</div>
+                <div class="entry-meta">The 17th Winter Conference in World History · Beijing Normal University · Nov 2021 (First Prize)</div>
             </div>
         </section>
+    </main>
 
-        <!-- VI. Education & Methodological Training -->
+    <!-- Background Interlude 3: Arch of Titus (IMG_8594.jpeg) -->
+    <div class="monument-break break-triumph">
+        <div class="break-text-box">
+            <div class="break-title">Triumphvs et Consecratio</div>
+            <div class="break-subtitle">Memory and Monumental Continuity in the Forum Romanum</div>
+        </div>
+    </div>
+
+    <!-- Section 4: Education, Training & Languages -->
+    <main class="container">
         <section id="education">
             <div class="section-header">
-                <span class="section-numeral">Part VI</span>
-                <h2 class="section-title">Education & Specialized Training</h2>
+                <span class="section-numeral">Part V</span>
+                <h2 class="section-title">Education & Training</h2>
             </div>
 
             <div class="card">
@@ -774,7 +733,7 @@
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <span class="timeline-institution">University of Edinburgh</span>
-                        <span class="timeline-date">Visiting Scholar Period</span>
+                        <span class="timeline-date">Visiting Period</span>
                     </div>
                     <div class="timeline-role">Visiting Research Student · School of History, Classics and Archaeology</div>
                 </div>
@@ -784,7 +743,7 @@
                         <span class="timeline-institution">University of Chinese Academy of Social Sciences (UCASS)</span>
                         <span class="timeline-date">Sep 2020 – Jul 2023</span>
                     </div>
-                    <div class="timeline-role">M.A. in World History (Roman History) · Institute of World History · Overall Mark: 85.9 / 100</div>
+                    <div class="timeline-role">M.A. in World History (Roman History) · Mark: 85.9 / 100</div>
                 </div>
 
                 <div class="timeline-item">
@@ -792,27 +751,26 @@
                         <span class="timeline-institution">Capital Normal University (首都师范大学)</span>
                         <span class="timeline-date">Sep 2016 – Jul 2020</span>
                     </div>
-                    <div class="timeline-role">B.A. in World History · Mark: 86.3 / 100 · First-Class Scholarship & Beijing Excellent Graduate</div>
+                    <div class="timeline-role">B.A. in World History · Mark: 86.3 / 100 · Excellent Graduate of Beijing</div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="box-title">International Summer Programs & Classical Methodologies</div>
+                <div class="box-title">Classical Methodological Training</div>
                 <ul style="padding-left: 1.25rem; font-size: 1.05rem;">
                     <li style="margin-bottom: 0.5rem;"><strong>Universidad de Oviedo</strong> (Jul 2024): <em>Latin Non-Literary Sources: Theory, Methodological Approaches, and Practical Application</em></li>
                     <li style="margin-bottom: 0.5rem;"><strong>Fudan University</strong> (Jul 2023): <em>Summer School in Roman Political Culture</em></li>
                     <li style="margin-bottom: 0.5rem;"><strong>Alteritas Training School</strong> (Sep 2022): <em>The Epigraphic Text: From Context to Meaning</em></li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Leiden University</strong> (Jul 2022): <em>Leiden Summer School in Languages & Linguistics (Introduction to Papyrology & Mediterranean Legal Language)</em></li>
-                    <li><strong>Shanghai Normal University</strong> (Jul 2021): <em>Intensive Summer Program in Greek Language</em></li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Leiden University</strong> (Jul 2022): <em>Leiden Summer School in Languages & Linguistics (Introduction to Papyrology & The Language of Law)</em></li>
+                    <li><strong>Shanghai Normal University</strong> (Jul 2021): <em>Summer Program in Greek Language</em></li>
                 </ul>
             </div>
         </section>
 
-        <!-- VII. Languages -->
         <section id="languages">
             <div class="section-header">
-                <span class="section-numeral">Part VII</span>
-                <h2 class="section-title">Languages & Ancillary Disciplines</h2>
+                <span class="section-numeral">Part VI</span>
+                <h2 class="section-title">Languages</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-box">
@@ -825,7 +783,7 @@
                 </div>
                 <div class="skill-box">
                     <div class="skill-label">German</div>
-                    <div class="skill-detail">Academic Historiography (Intermediate)</div>
+                    <div class="skill-detail">Academic Reading (Intermediate)</div>
                 </div>
                 <div class="skill-box">
                     <div class="skill-label">English</div>
@@ -837,15 +795,13 @@
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Background (IMG_8280.jpeg) -->
     <footer>
         <div class="footer-epigraph">SENATVS POPVLVSQVE ROMANVS · IN PERPETVVM</div>
         <p class="footer-text">
-            Academic Homepage of Liu Qianhao (刘乾浩) · Department of History, Fudan University & University of Edinburgh.<br>
-            Materials & Inscriptions curated for Roman Imperial Historiography.
+            Academic Homepage of Liu Qianhao (刘乾昊) · Department of History, Fudan University & University of Edinburgh
         </p>
     </footer>
 
